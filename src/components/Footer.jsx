@@ -1,6 +1,7 @@
-import { Phone, MessageCircle, MapPin, ExternalLink, ChevronRight, Star, Clock, Mail } from 'lucide-react';
+import { Phone, MessageCircle, MapPin, ExternalLink, ChevronRight, Star, Clock } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
+const YEAR = new Date().getFullYear();
 
 const quickLinks = [
   { label: 'Home', href: '#home' },
@@ -58,6 +59,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <div className="gradient-divider" />
 
       {/* Main Footer Container */}
       <div className="relative w-full px-6 sm:px-10 lg:px-16 xl:px-24 py-16 lg:py-20">
@@ -207,7 +210,7 @@ export default function Footer() {
       <div className="relative border-t border-zinc-900 bg-black/60 px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500">
           <div>
-            © {new Date().getFullYear()} Ahmad Rubber Traders, Lahore. All rights reserved.
+            © {YEAR} Ahmad Rubber Traders, Lahore. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-zinc-400">

@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
         <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
           <div className="lg:col-span-8">
             <div
-              className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
+              className="badge-animated inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
               data-reveal="up"
             >
               <span className="w-2 h-2 rounded-full bg-orange-500" />
@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
               style={{ '--reveal-delay': '80ms' }}
             >
               WHAT OUR CLIENTS SAY<br />
-              <span className="text-orange-500">ABOUT WORKING WITH US</span>.
+              <span className="text-gradient-orange">ABOUT WORKING WITH US</span>.
             </h2>
           </div>
           <div className="lg:col-span-4 space-y-3" data-reveal="up" style={{ '--reveal-delay': '160ms' }}>
@@ -72,8 +72,9 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className="hover-lift bg-white border border-zinc-200 p-8 space-y-6 shadow-sm hover:border-orange-500 hover:shadow-2xl transition-all duration-300 relative group flex flex-col justify-between"
+              className="hover-tilt card-spotlight bg-white border border-zinc-200 p-8 space-y-6 shadow-sm hover:border-orange-500 hover:shadow-2xl transition-all duration-300 relative group flex flex-col justify-between"
               data-reveal="up"
+              data-spotlight
               style={{ '--reveal-delay': `${i * 120}ms` }}
             >
               <div className="space-y-4">

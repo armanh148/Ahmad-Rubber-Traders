@@ -38,7 +38,7 @@ export default function BlogSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <div
-              className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-3 rounded-sm"
+              className="badge-animated inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-3 rounded-sm"
               data-reveal="up"
             >
               <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
@@ -50,7 +50,7 @@ export default function BlogSection() {
               style={{ '--reveal-delay': '80ms' }}
             >
               INSIGHTS SHAPING THE<br />
-              <span className="text-orange-500">FUTURE OF INDUSTRY</span>.
+              <span className="text-gradient-orange">FUTURE OF INDUSTRY</span>.
             </h2>
           </div>
           <a
@@ -71,8 +71,9 @@ export default function BlogSection() {
           {posts.map((post, i) => (
             <div
               key={post.title}
-              className="hover-lift group bg-zinc-50 border border-zinc-200/90 rounded-sm overflow-hidden hover:border-orange-500 hover:shadow-xl transition-all duration-300 flex flex-col"
+              className="hover-tilt card-spotlight group bg-zinc-50 border border-zinc-200/90 rounded-sm overflow-hidden hover:border-orange-500 hover:shadow-xl transition-all duration-300 flex flex-col"
               data-reveal="up"
+              data-spotlight
               style={{ '--reveal-delay': `${i * 120}ms` }}
             >
               <div className="relative h-52 overflow-hidden bg-zinc-200">

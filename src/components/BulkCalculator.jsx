@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageCircle, CheckCircle, Calculator, MapPin, Phone, Building2, Ruler, ArrowRight } from 'lucide-react';
+import { MessageCircle, CheckCircle, Calculator, MapPin, Phone, Ruler } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 
@@ -72,7 +72,7 @@ export default function CTASection() {
         {/* LEFT COLUMN: Industrial Heading & Worker Badge (7 cols) */}
         <div className="lg:col-span-7 space-y-7 text-zinc-950">
           <div
-            className="inline-flex items-center gap-2 bg-black/10 border border-black/20 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] font-heading rounded-sm"
+            className="badge-animated inline-flex items-center gap-2 bg-black/10 border border-black/20 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] font-heading rounded-sm"
             data-reveal="left"
           >
             <Calculator size={13} className="icon-motion" />
@@ -134,8 +134,9 @@ export default function CTASection() {
 
         {/* RIGHT COLUMN: Clean White B2B Calculator Card (5 cols) */}
         <div
-          className="lg:col-span-5 bg-white text-zinc-900 p-6 sm:p-8 shadow-2xl border-4 border-zinc-950 space-y-5 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] transition-shadow duration-500"
+          className="card-spotlight lg:col-span-5 bg-white text-zinc-900 p-6 sm:p-8 shadow-2xl border-4 border-zinc-950 space-y-5 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] transition-shadow duration-500"
           data-reveal="right"
+          data-spotlight
           style={{ '--reveal-delay': '160ms' }}
         >
           <div className="border-b border-zinc-200 pb-4">
@@ -270,7 +271,7 @@ export default function CTASection() {
             <button
               type="button"
               onClick={calculate}
-              className="flex-1 bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold py-4 text-xs uppercase tracking-widest transition-all shadow-md active:scale-95 font-heading"
+              className="btn-shine flex-1 bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold py-4 text-xs uppercase tracking-widest transition-all shadow-md hover:-translate-y-0.5 active:scale-95 font-heading"
             >
               Calculate
             </button>

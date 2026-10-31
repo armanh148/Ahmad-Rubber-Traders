@@ -1,4 +1,4 @@
-import { MessageCircle, Ruler, Weight, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { MessageCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 
@@ -46,7 +46,7 @@ export default function ProductsGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <div
-              className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
+              className="badge-animated inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
               data-reveal="up"
             >
               <span className="w-2 h-2 rounded-full bg-orange-500" />
@@ -58,7 +58,7 @@ export default function ProductsGrid() {
               style={{ '--reveal-delay': '80ms' }}
             >
               INDUSTRIAL PRODUCTS<br />
-              <span className="text-orange-500">BUILT FOR PERFORMANCE</span>.
+              <span className="text-gradient-orange">BUILT FOR PERFORMANCE</span>.
             </h2>
           </div>
           <a
@@ -81,8 +81,9 @@ export default function ProductsGrid() {
           {products.map((p, i) => (
             <div
               key={p.id}
-              className="hover-lift group bg-zinc-50 border border-zinc-200 hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-2xl overflow-hidden flex flex-col justify-between"
+              className="hover-tilt card-spotlight group bg-zinc-50 border border-zinc-200 hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-2xl overflow-hidden flex flex-col justify-between"
               data-reveal="up"
+              data-spotlight
               style={{ '--reveal-delay': `${i * 120}ms` }}
             >
               <div>

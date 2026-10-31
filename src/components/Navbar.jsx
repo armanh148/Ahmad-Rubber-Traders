@@ -16,12 +16,20 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [active, setActive] = useState('#home');
 
   useEffect(() => {
     const fn = () => {
       setScrolled(window.scrollY > 20);
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+
+      let current = '#home';
+      links.forEach(({ href }) => {
+        const el = document.querySelector(href);
+        if (el && el.getBoundingClientRect().top <= 140) current = href;
+      });
+      setActive(current);
     };
     fn();
     window.addEventListener('scroll', fn, { passive: true });
@@ -69,10 +77,17 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={(e) => goto(e, l.href)}
-              className="text-zinc-700 hover:text-orange-600 font-bold text-xs uppercase tracking-[0.15em] transition-colors relative py-1.5 group"
+              className={`font-bold text-xs uppercase tracking-[0.15em] transition-colors relative py-1.5 group ${
+                active === l.href ? 'text-orange-600' : 'text-zinc-700 hover:text-orange-600'
+              }`}
+              aria-current={active === l.href ? 'page' : undefined}
             >
               {l.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-200" />
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                  active === l.href ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+              />
             </a>
           ))}
         </div>
@@ -112,7 +127,10 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={(e) => goto(e, l.href)}
-              className="block text-zinc-900 hover:text-orange-600 py-2.5 font-bold text-sm uppercase tracking-wider border-b border-zinc-100"
+              className={`block py-2.5 font-bold text-sm uppercase tracking-wider border-b border-zinc-100 transition-colors ${
+                active === l.href ? 'text-orange-600' : 'text-zinc-900 hover:text-orange-600'
+              }`}
+              aria-current={active === l.href ? 'page' : undefined}
             >
               {l.label}
             </a>

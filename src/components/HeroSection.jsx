@@ -1,4 +1,5 @@
-import { ArrowRight, MessageCircle, CheckCircle2, ShieldCheck, Award, Factory } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { ArrowRight, MessageCircle, Factory } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 
@@ -21,10 +22,49 @@ const heroFeatures = [
 ];
 
 export default function HeroSection() {
+  const watermarkRef = useRef(null);
+  const visualRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let frame = 0;
+    const update = () => {
+      const y = window.scrollY;
+      if (watermarkRef.current) {
+        watermarkRef.current.style.transform = `translate3d(0, calc(-50% + ${y * 0.12}px), 0)`;
+      }
+      if (visualRef.current) {
+        visualRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.06, 40)}px, 0)`;
+      }
+      frame = 0;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section id="home" className="relative bg-[#f8f9fa] bg-grid-industrial overflow-hidden border-b border-zinc-200">
+      {/* Animated ambient blobs */}
+      <div className="pointer-events-none absolute -top-32 right-1/4 w-[480px] h-[480px] rounded-full bg-orange-400/20 blur-3xl animate-blob" />
+      <div
+        className="pointer-events-none absolute bottom-0 -left-24 w-[420px] h-[420px] rounded-full bg-amber-300/20 blur-3xl animate-blob"
+        style={{ animationDelay: '-8s' }}
+      />
+
       {/* Giant faint architectural watermark behind hero */}
-      <div className="absolute top-1/2 left-4 -translate-y-1/2 pointer-events-none select-none opacity-5 font-heading text-[180px] lg:text-[260px] font-black uppercase text-zinc-900 tracking-tighter leading-none whitespace-nowrap">
+      <div
+        ref={watermarkRef}
+        className="absolute top-1/2 left-4 pointer-events-none select-none opacity-5 font-heading text-[180px] lg:text-[260px] font-black uppercase text-zinc-900 tracking-tighter leading-none whitespace-nowrap will-change-transform"
+        style={{ transform: 'translate3d(0, -50%, 0)' }}
+      >
         INDUSTRY
       </div>
 
@@ -33,7 +73,7 @@ export default function HeroSection() {
         <div className="lg:col-span-7 flex flex-col justify-center space-y-7 z-10">
           {/* Subtle Tag */}
           <div
-            className="inline-flex items-center gap-2.5 bg-white border border-zinc-300/80 px-3.5 py-1.5 shadow-xs w-fit"
+            className="badge-animated inline-flex items-center gap-2.5 bg-white border border-zinc-300/80 px-3.5 py-1.5 shadow-xs w-fit"
             data-reveal="up"
           >
             <span className="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse" />
@@ -49,7 +89,7 @@ export default function HeroSection() {
             style={{ '--reveal-delay': '90ms' }}
           >
             RELIABLE DAIRY FARM<br />
-            <span className="text-orange-500 drop-shadow-xs">RUBBER &amp; FLOORING</span><br />
+            <span className="text-gradient-orange">RUBBER &amp; FLOORING</span><br />
             <span className="text-zinc-900">SOLUTIONS.</span>
           </h1>
 
@@ -126,7 +166,7 @@ export default function HeroSection() {
           data-reveal="right"
           style={{ '--reveal-delay': '220ms' }}
         >
-          <div className="relative w-full max-w-md lg:max-w-none">
+          <div ref={visualRef} className="relative w-full max-w-md lg:max-w-none will-change-transform">
             {/* Main Portrait Frame */}
             <div className="group relative overflow-hidden border-4 border-white shadow-2xl bg-zinc-900">
               <img
@@ -187,7 +227,9 @@ export default function HeroSection() {
       </div>
 
       {/* Industrial Ticker Ribbon (Full Width) */}
-      <div className="bg-orange-500 py-3 overflow-hidden border-y-2 border-zinc-900">
+      <div className="relative bg-orange-500 py-3 overflow-hidden border-y-2 border-zinc-900">
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-orange-500 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-orange-500 to-transparent z-10 pointer-events-none" />
         <div className="animate-marquee whitespace-nowrap flex items-center">
           {[...Array(6)].map((_, i) => (
             <span key={i} className="flex items-center gap-8 pr-8 font-heading font-black text-sm uppercase tracking-[0.2em] text-zinc-950">

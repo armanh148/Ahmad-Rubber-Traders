@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import TopInfoBar from './components/TopInfoBar';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import ExcellenceSection from './components/ExcellenceSection';
 import SolutionsSection from './components/SolutionsSection';
 import TeamSection from './components/TeamSection';
 import ProductsGrid from './components/ProductsGrid';
@@ -9,6 +10,7 @@ import CTASection from './components/BulkCalculator';
 import TestimonialsSection from './components/TestimonialsSection';
 import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
+import FloatingActions from './components/FloatingActions';
 
 /**
  * Observes every `[data-reveal]` element and adds `.reveal-in`
@@ -41,8 +43,32 @@ function useScrollReveal() {
   }, []);
 }
 
+/**
+ * Tracks the pointer inside every `[data-spotlight]` card so the
+ * CSS radial highlight follows the cursor.
+ */
+function useCardSpotlight() {
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll('[data-spotlight]'));
+    if (cards.length === 0) return;
+
+    const cleanups = cards.map((card) => {
+      const move = (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
+        card.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
+      };
+      card.addEventListener('pointermove', move);
+      return () => card.removeEventListener('pointermove', move);
+    });
+
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
+}
+
 export default function App() {
   useScrollReveal();
+  useCardSpotlight();
 
   return (
     <div className="bg-white text-zinc-900 min-h-screen font-sans antialiased selection:bg-orange-500 selection:text-white">
@@ -50,6 +76,7 @@ export default function App() {
       <Navbar />
       <main>
         <HeroSection />
+        <ExcellenceSection />
         <SolutionsSection />
         <TeamSection />
         <ProductsGrid />
@@ -58,6 +85,7 @@ export default function App() {
         <BlogSection />
       </main>
       <Footer />
+      <FloatingActions />
     </div>
   );
 }

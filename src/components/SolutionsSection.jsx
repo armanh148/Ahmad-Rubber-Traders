@@ -37,7 +37,7 @@ export default function SolutionsSection() {
         <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
           <div className="lg:col-span-8">
             <div
-              className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] text-orange-400 mb-4"
+              className="badge-animated inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] text-orange-400 mb-4"
               data-reveal="up"
             >
               <span className="w-2 h-2 rounded-full bg-orange-500" />
@@ -49,7 +49,7 @@ export default function SolutionsSection() {
               style={{ '--reveal-delay': '80ms' }}
             >
               COMPLETE INDUSTRIAL<br />
-              <span className="text-orange-500">SOLUTIONS</span> UNDER ONE ROOF.
+              <span className="text-gradient-orange">SOLUTIONS</span> UNDER ONE ROOF.
             </h2>
           </div>
           <div
@@ -79,8 +79,9 @@ export default function SolutionsSection() {
           {solutions.map((sol, i) => (
             <div
               key={sol.title}
-              className="hover-lift group bg-zinc-900 border border-zinc-800 hover:border-orange-500 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-2xl hover:shadow-orange-500/10 relative"
+              className="hover-tilt card-spotlight group bg-zinc-900 border border-zinc-800 hover:border-orange-500 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-2xl hover:shadow-orange-500/10 relative"
               data-reveal="up"
+              data-spotlight
               style={{ '--reveal-delay': `${i * 120}ms` }}
             >
               <div>

@@ -1,4 +1,4 @@
-import { Phone, MapPin, Star, MessageCircle, Mail, ShieldCheck } from 'lucide-react';
+import { Phone, MapPin, Star, MessageCircle, Mail } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 

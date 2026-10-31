@@ -31,7 +31,7 @@ export default function TeamSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div
-            className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
+            className="badge-animated inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-orange-700 mb-4"
             data-reveal="up"
           >
             <span className="w-2 h-2 rounded-full bg-orange-500" />
@@ -43,7 +43,7 @@ export default function TeamSection() {
             style={{ '--reveal-delay': '80ms' }}
           >
             MEET THE EXPERTS BEHIND OUR<br />
-            <span className="text-orange-500">INDUSTRIAL EXCELLENCE</span>.
+            <span className="text-gradient-orange">INDUSTRIAL EXCELLENCE</span>.
           </h2>
           <p
             className="text-zinc-600 mt-4 text-sm sm:text-base leading-relaxed font-normal"
@@ -59,8 +59,9 @@ export default function TeamSection() {
           {experts.map((exp, i) => (
             <div
               key={exp.name}
-              className="hover-lift group bg-white border border-zinc-200 hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-2xl overflow-hidden flex flex-col"
+              className="hover-tilt card-spotlight group bg-white border border-zinc-200 hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-2xl overflow-hidden flex flex-col"
               data-reveal="up"
+              data-spotlight
               style={{ '--reveal-delay': `${i * 120}ms` }}
             >
               {/* Portrait Frame with Ambient Orange Glow */}

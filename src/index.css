@@ -162,6 +162,144 @@
 }
 
 /* =========================================================
+   EXTRA STYLE & MOTION
+   ========================================================= */
+
+/* Animated gradient text */
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.text-gradient-orange {
+  background-image: linear-gradient(100deg, #f97316 0%, #fb923c 22%, #ffd9b0 50%, #fb923c 78%, #f97316 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-pan 7s ease-in-out infinite;
+}
+
+/* Shimmer sweep across section badges */
+.badge-animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-animated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.9), transparent);
+  transform: translateX(-110%);
+  animation: badge-sweep 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes badge-sweep {
+  0%        { transform: translateX(-110%); }
+  60%, 100% { transform: translateX(110%); }
+}
+
+/* 3D tilt on hover */
+.hover-tilt {
+  transform-style: preserve-3d;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.hover-tilt:hover {
+  transform: perspective(1100px) rotateX(1.6deg) rotateY(-2deg) translateY(-6px);
+}
+
+/* Cursor-follow spotlight overlay (JS sets --spot-x / --spot-y) */
+.card-spotlight {
+  position: relative;
+}
+
+.card-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    340px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(249, 115, 22, 0.18),
+    transparent 65%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.card-spotlight:hover::after {
+  opacity: 1;
+}
+
+/* Slow drifting gradient blobs */
+@keyframes blob-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(40px, -30px, 0) scale(1.08); }
+  66%      { transform: translate3d(-30px, 25px, 0) scale(0.94); }
+}
+
+.animate-blob {
+  animation: blob-drift 20s ease-in-out infinite;
+}
+
+/* Scroll cue dot */
+@keyframes scroll-cue {
+  0%   { transform: translateY(-4px); opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+.animate-scroll-cue {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+
+/* Animated gradient divider */
+@keyframes divider-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.gradient-divider {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #f97316, #fb923c, #f97316, transparent);
+  background-size: 200% 100%;
+  animation: divider-flow 6s linear infinite;
+}
+
+/* Thin branded scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f97316, #ea580c);
+  border-radius: 999px;
+  border: 2px solid #f4f4f5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* =========================================================
    ACCESSIBILITY — respect reduced-motion preference
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {
@@ -180,12 +318,26 @@
   .animate-float,
   .animate-glow,
   .animate-pop,
+  .animate-blob,
+  .animate-scroll-cue,
+  .text-gradient-orange,
+  .gradient-divider,
   .animate-pulse {
     animation: none !important;
   }
 
-  .hover-lift:hover {
+  .badge-animated::after {
+    animation: none !important;
+    display: none;
+  }
+
+  .hover-lift:hover,
+  .hover-tilt:hover {
     transform: none;
+  }
+
+  .card-spotlight::after {
+    display: none;
   }
 
   .btn-shine::after {
