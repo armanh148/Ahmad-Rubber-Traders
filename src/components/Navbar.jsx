@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { Menu, X, MessageCircle, ArrowUpRight, Phone } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 const links = [
@@ -48,98 +48,114 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-200 ${
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-zinc-200'
-          : 'bg-white border-b border-zinc-200'
+          ? 'border-zinc-200 bg-white/92 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] backdrop-blur-xl'
+          : 'border-zinc-200 bg-white'
       }`}
     >
-      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-24 h-20 flex items-center justify-between">
+      <div className="shell flex h-[76px] items-center justify-between gap-4">
         {/* Brand Logo */}
-        <a href="#home" onClick={(e) => goto(e, '#home')} className="flex items-center gap-3.5 group">
-          <div className="w-12 h-12 bg-orange-500 flex items-center justify-center font-black text-white text-2xl tracking-tighter shadow-md shadow-orange-500/30 group-hover:bg-orange-600 group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
-            ART
+        <a href="#home" onClick={(e) => goto(e, '#home')} className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
+          <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center bg-orange-500 shadow-[0_8px_24px_-10px_rgba(249,115,22,0.9)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105 sm:h-11 sm:w-11">
+            <span className="font-heading text-lg font-black tracking-tighter text-white sm:text-xl">ART</span>
+            <span className="absolute -right-1 -top-1 h-2 w-2 bg-zinc-950" />
           </div>
-          <div>
-            <div className="font-heading text-2xl sm:text-3xl font-extrabold text-zinc-950 uppercase tracking-tight leading-none">
+          <div className="min-w-0 leading-none">
+            <div className="truncate font-heading text-base font-extrabold uppercase tracking-tight text-zinc-950 sm:text-2xl">
               Ahmad Rubber Traders
             </div>
-            <div className="text-orange-600 text-[10px] font-extrabold tracking-[0.25em] uppercase mt-1">
+            <div className="mt-1.5 hidden text-[9px] font-extrabold uppercase tracking-[0.26em] text-orange-600 sm:block">
               Industrial Flooring &amp; Mats · Lahore
             </div>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden items-center gap-0.5 lg:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={(e) => goto(e, l.href)}
-              className={`font-bold text-xs uppercase tracking-[0.15em] transition-colors relative py-1.5 group ${
-                active === l.href ? 'text-orange-600' : 'text-zinc-700 hover:text-orange-600'
+              className={`relative px-2.5 py-2 text-[10px] font-extrabold uppercase tracking-[0.16em] transition-colors ${
+                active === l.href
+                  ? 'text-orange-700'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
               aria-current={active === l.href ? 'page' : undefined}
             >
               {l.label}
               <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
-                  active === l.href ? 'w-full' : 'w-0 group-hover:w-full'
+                className={`absolute inset-x-2.5 bottom-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                  active === l.href ? 'opacity-100' : 'opacity-0'
                 }`}
               />
             </a>
           ))}
         </div>
 
-        {/* Desktop CTA Button */}
-        <div className="flex items-center gap-3">
+        {/* Desktop CTA */}
+        <div className="flex items-center gap-2">
+          <a
+            href="tel:+923116103661"
+            aria-label="Call Ahmad Rubber Traders"
+            className="hidden h-10 w-10 items-center justify-center border border-zinc-200 text-zinc-600 transition-colors hover:border-orange-500 hover:text-orange-600 xl:flex"
+          >
+            <Phone size={15} />
+          </a>
+
           <a
             href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20need%20a%20factory-rate%20quote.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-6 py-3 text-xs uppercase tracking-widest transition-all shadow-md shadow-orange-500/25 active:scale-95 group btn-shine"
+            className="group hidden items-center gap-2 bg-zinc-950 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white transition-colors hover:bg-orange-500 hover:text-black sm:inline-flex"
           >
-            <MessageCircle size={15} className="icon-motion" />
-            <span>Chat on WhatsApp</span>
-            <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <MessageCircle size={14} className="text-emerald-400 transition-colors group-hover:text-black" />
+            <span>Factory quote</span>
+            <ArrowUpRight
+              size={14}
+              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
           </a>
 
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-zinc-900 hover:text-orange-600 p-2 border border-zinc-300 rounded-sm"
+            className="flex h-10 w-10 items-center justify-center border border-zinc-300 text-zinc-900 transition-colors hover:border-orange-500 hover:text-orange-600 lg:hidden"
             aria-label="Toggle navigation"
+            aria-expanded={open}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          open ? 'max-h-96 border-t border-zinc-200 shadow-xl' : 'max-h-0'
-        } bg-white`}
+        className={`overflow-hidden border-zinc-200 bg-white transition-all duration-300 lg:hidden ${
+          open ? 'max-h-[520px] border-t shadow-2xl' : 'max-h-0'
+        }`}
       >
-        <div className="px-6 py-5 space-y-2">
+        <div className="shell space-y-1 py-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={(e) => goto(e, l.href)}
-              className={`block py-2.5 font-bold text-sm uppercase tracking-wider border-b border-zinc-100 transition-colors ${
+              className={`flex items-center justify-between border-b border-zinc-100 py-3 text-sm font-extrabold uppercase tracking-wider transition-colors ${
                 active === l.href ? 'text-orange-600' : 'text-zinc-900 hover:text-orange-600'
               }`}
               aria-current={active === l.href ? 'page' : undefined}
             >
-              {l.label}
+              <span>{l.label}</span>
+              <ArrowUpRight size={15} className="opacity-40" />
             </a>
           ))}
           <a
             href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20need%20a%20quote.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-orange-500 text-white font-extrabold px-4 py-3 text-xs uppercase tracking-widest mt-3 shadow-md"
+            className="mt-4 flex items-center justify-center gap-2 bg-orange-500 px-4 py-3.5 text-xs font-extrabold uppercase tracking-widest text-white shadow-md"
           >
             <MessageCircle size={15} />
             <span>Chat on WhatsApp (+92 311 6103661)</span>
@@ -148,7 +164,10 @@ export default function Navbar() {
       </div>
 
       {/* Scroll progress bar */}
-      <div className="absolute bottom-0 left-0 h-[3px] bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.7)] transition-[width] duration-150 ease-out" style={{ width: `${progress}%` }} />
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-orange-500 transition-[width] duration-150 ease-out"
+        style={{ width: `${progress}%` }}
+      />
     </nav>
   );
 }

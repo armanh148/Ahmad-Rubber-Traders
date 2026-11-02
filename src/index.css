@@ -4,20 +4,56 @@
   :root {
     --font-heading: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --brand: #f97316;
+    --ink: #0c0a09;
+    --paper: #f7f6f2;
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 6rem;
   }
   body {
     font-family: var(--font-body);
     color: #18181b;
     background-color: #ffffff;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+  }
+  :where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Shared page shell — keeps every section aligned on wide screens */
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1600px;
+    padding-inline: clamp(1.25rem, 4.5vw, 3.5rem);
+  }
+
+  .section-pad {
+    padding-block: clamp(4.25rem, 8vw, 7.5rem);
+  }
+
+  .section-pad-sm {
+    padding-block: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
   }
 }
 

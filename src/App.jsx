@@ -71,7 +71,7 @@ export default function App() {
   useCardSpotlight();
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen font-sans antialiased selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-white font-sans text-zinc-900 antialiased selection:bg-orange-500 selection:text-white">
       <TopInfoBar />
       <Navbar />
       <main>

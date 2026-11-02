@@ -1,24 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { ArrowRight, MessageCircle, Factory } from 'lucide-react';
+import { ArrowRight, MessageCircle, Factory, Star, MapPin, ShieldCheck } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 
-const heroFeatures = [
-  {
-    num: '01',
-    title: 'DIRECT FACTORY WHOLESALE',
-    desc: 'Unmatched manufacturer rates straight from Lahore.',
-  },
-  {
-    num: '02',
-    title: '17MM VULCANIZED RUBBER',
-    desc: 'Heavy anti-slip shock absorption for livestock.',
-  },
-  {
-    num: '03',
-    title: 'ALL-PAKISTAN LOGISTICS',
-    desc: 'Direct cargo dispatch to all dairy farming hubs.',
-  },
+const stats = [
+  { value: '17mm', label: 'Heavy-duty gauge', sub: 'Vulcanized rubber' },
+  { value: '500+', label: 'Farms supplied', sub: 'Across Pakistan' },
+  { value: '4.9/5', label: 'Google rating', sub: '77 verified reviews' },
+  { value: '10+', label: 'Years in trade', sub: 'Factory direct' },
 ];
 
 export default function HeroSection() {
@@ -32,10 +21,10 @@ export default function HeroSection() {
     const update = () => {
       const y = window.scrollY;
       if (watermarkRef.current) {
-        watermarkRef.current.style.transform = `translate3d(0, calc(-50% + ${y * 0.12}px), 0)`;
+        watermarkRef.current.style.transform = `translate3d(0, calc(-50% + ${y * 0.1}px), 0)`;
       }
       if (visualRef.current) {
-        visualRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.06, 40)}px, 0)`;
+        visualRef.current.style.transform = `translate3d(0, ${Math.min(y * 0.05, 34)}px, 0)`;
       }
       frame = 0;
     };
@@ -51,66 +40,72 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="relative bg-[#f8f9fa] bg-grid-industrial overflow-hidden border-b border-zinc-200">
-      {/* Animated ambient blobs */}
-      <div className="pointer-events-none absolute -top-32 right-1/4 w-[480px] h-[480px] rounded-full bg-orange-400/20 blur-3xl animate-blob" />
+    <section
+      id="home"
+      className="relative overflow-hidden border-b border-zinc-200 bg-[#f7f6f2] bg-grid-industrial"
+    >
+      {/* Ambient accents */}
+      <div className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-orange-400/15 blur-3xl animate-blob" />
       <div
-        className="pointer-events-none absolute bottom-0 -left-24 w-[420px] h-[420px] rounded-full bg-amber-300/20 blur-3xl animate-blob"
+        className="pointer-events-none absolute -bottom-20 -left-24 h-[380px] w-[380px] rounded-full bg-amber-300/20 blur-3xl animate-blob"
         style={{ animationDelay: '-8s' }}
       />
 
-      {/* Giant faint architectural watermark behind hero */}
+      {/* Faint architectural watermark */}
       <div
         ref={watermarkRef}
-        className="absolute top-1/2 left-4 pointer-events-none select-none opacity-5 font-heading text-[180px] lg:text-[260px] font-black uppercase text-zinc-900 tracking-tighter leading-none whitespace-nowrap will-change-transform"
+        className="pointer-events-none absolute left-0 top-1/2 select-none whitespace-nowrap font-heading text-[190px] font-black uppercase leading-none tracking-tighter text-zinc-900 opacity-[0.035] will-change-transform lg:text-[260px]"
         style={{ transform: 'translate3d(0, -50%, 0)' }}
       >
-        INDUSTRY
+        RUBBER
       </div>
 
-      <div className="relative w-full px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-20 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        {/* LEFT CONTENT (7 cols) */}
-        <div className="lg:col-span-7 flex flex-col justify-center space-y-7 z-10">
-          {/* Subtle Tag */}
+      <div className="shell relative z-10 grid items-center gap-12 pb-10 pt-14 lg:grid-cols-12 lg:gap-10 lg:pb-16 lg:pt-20">
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col justify-center lg:col-span-6 xl:col-span-6">
           <div
-            className="badge-animated inline-flex items-center gap-2.5 bg-white border border-zinc-300/80 px-3.5 py-1.5 shadow-xs w-fit"
+            className="badge-animated inline-flex w-fit items-center gap-2.5 border border-zinc-300 bg-white px-3.5 py-2 shadow-sm"
             data-reveal="up"
           >
-            <span className="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse" />
-            <span className="text-zinc-900 text-xs font-black tracking-[0.2em] uppercase font-heading">
-              Ahmad Rubber Traders — Fleming Road, Lahore
+            <span className="h-2 w-2 animate-pulse rounded-full bg-orange-500" />
+            <span className="font-heading text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900">
+              Fleming Road, Lahore
+            </span>
+            <span className="h-3 w-px bg-zinc-300" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+              Since 2014
             </span>
           </div>
 
-          {/* Heavy Condensed Industrial Headline (Matching Reference) */}
           <h1
-            className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-zinc-950 uppercase leading-[0.95] tracking-tight"
+            className="mt-6 font-heading text-[clamp(2.9rem,7.2vw,5.6rem)] font-black uppercase leading-[0.9] tracking-tight text-zinc-950"
             data-reveal="up"
-            style={{ '--reveal-delay': '90ms' }}
+            style={{ '--reveal-delay': '80ms' }}
           >
-            RELIABLE DAIRY FARM<br />
-            <span className="text-gradient-orange">RUBBER &amp; FLOORING</span><br />
-            <span className="text-zinc-900">SOLUTIONS.</span>
+            DAIRY FARM
+            <br />
+            <span className="text-gradient-orange">RUBBER MATS</span>
+            <br />
+            &amp; FLOORING.
           </h1>
 
-          {/* Subtitle */}
           <p
-            className="text-zinc-600 text-base sm:text-lg leading-relaxed max-w-xl font-normal"
+            className="mt-6 max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-base"
             data-reveal="up"
-            style={{ '--reveal-delay': '170ms' }}
+            style={{ '--reveal-delay': '160ms' }}
           >
-            Specialized manufacturing &amp; direct wholesale supply of{' '}
-            <strong className="text-zinc-950 font-bold">heavy-duty rubber cow mats</strong>,{' '}
-            <strong className="text-zinc-950 font-bold">EVA interlocking sheets</strong>, and{' '}
-            <strong className="text-zinc-950 font-bold">milking parlor mats</strong> engineered to prevent cattle slip injuries,
-            maintain hygiene, and withstand extreme agricultural wear.
+            Factory-direct wholesale supply of{' '}
+            <strong className="font-bold text-zinc-950">heavy-duty cow mats</strong>,{' '}
+            <strong className="font-bold text-zinc-950">EVA interlocking sheets</strong> and{' '}
+            <strong className="font-bold text-zinc-950">milking parlor mats</strong> — engineered
+            to prevent cattle slip injuries, hold up to daily washdowns, and outlast ordinary
+            flooring.
           </p>
 
-          {/* CTA Buttons */}
           <div
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1"
+            className="mt-8 flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:items-center"
             data-reveal="up"
-            style={{ '--reveal-delay': '250ms' }}
+            style={{ '--reveal-delay': '230ms' }}
           >
             <a
               href="#calculator"
@@ -118,121 +113,163 @@ export default function HeroSection() {
                 e.preventDefault();
                 document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="btn-shine inline-flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-8 py-4 text-xs uppercase tracking-[0.2em] transition-all shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-0.5 active:scale-95 group"
+              className="btn-shine group inline-flex items-center justify-center gap-3 bg-orange-500 px-7 py-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-white shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-xl active:scale-95"
             >
-              <span>Request Bulk Quote</span>
-              <div className="w-6 h-6 bg-black/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                <ArrowRight size={14} />
-              </div>
+              <span>Request bulk quote</span>
+              <span className="flex h-6 w-6 items-center justify-center bg-black/20">
+                <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+              </span>
             </a>
             <a
               href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20want%20to%20place%20a%20direct%20order.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold px-8 py-4 text-xs uppercase tracking-[0.2em] transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 group"
+              className="group inline-flex items-center justify-center gap-2.5 border border-zinc-950 bg-zinc-950 px-7 py-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-white transition-all hover:-translate-y-0.5 hover:bg-zinc-800 active:scale-95"
             >
-              <MessageCircle size={16} className="text-emerald-400 icon-motion" />
-              <span>Direct WhatsApp Order</span>
+              <MessageCircle size={15} className="text-emerald-400 icon-motion" />
+              <span>WhatsApp order</span>
             </a>
           </div>
 
-          {/* Bottom 3-Card Feature Bar (Exact match to reference bottom boxes) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-300/80">
-            {heroFeatures.map((feat, i) => (
-              <div
-                key={feat.num}
-                className="hover-lift bg-white border border-zinc-200 p-4 relative group hover:border-orange-500 shadow-xs hover:shadow-lg"
-                data-reveal="up"
-                style={{ '--reveal-delay': `${330 + i * 90}ms` }}
-              >
-                <div className="text-orange-500 font-heading font-black text-2xl leading-none mb-1 transition-transform duration-300 group-hover:translate-x-1">
-                  {feat.num}
-                </div>
-                <div className="font-heading font-black text-sm uppercase text-zinc-950 tracking-wide leading-tight">
-                  {feat.title}
-                </div>
-                <div className="text-zinc-500 text-xs mt-1 leading-snug">
-                  {feat.desc}
-                </div>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300" />
-              </div>
-            ))}
+          {/* Social proof row */}
+          <div
+            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-zinc-300/80 pt-5"
+            data-reveal="up"
+            style={{ '--reveal-delay': '300ms' }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={12} fill="#f97316" className="text-orange-500" />
+                ))}
+              </span>
+              <span className="text-xs font-bold text-zinc-900">
+                4.9 <span className="font-medium text-zinc-500">(77 reviews)</span>
+              </span>
+            </div>
+            <span className="hidden h-4 w-px bg-zinc-300 sm:block" />
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600">
+              <ShieldCheck size={14} className="text-emerald-600" />
+              Genuine vulcanized rubber
+            </span>
           </div>
         </div>
 
-        {/* RIGHT VISUAL: Industrial Engineer + Overlapping Spark Card (5 cols) */}
+        {/* RIGHT VISUAL */}
         <div
-          className="lg:col-span-5 relative flex justify-center lg:justify-end"
+          className="relative lg:col-span-6 xl:col-span-6"
           data-reveal="right"
-          style={{ '--reveal-delay': '220ms' }}
+          style={{ '--reveal-delay': '200ms' }}
         >
-          <div ref={visualRef} className="relative w-full max-w-md lg:max-w-none will-change-transform">
-            {/* Main Portrait Frame */}
-            <div className="group relative overflow-hidden border-4 border-white shadow-2xl bg-zinc-900">
+          <div ref={visualRef} className="relative mx-auto w-full max-w-lg will-change-transform lg:ml-auto lg:mr-0">
+            {/* Offset outline frame */}
+            <div className="absolute -bottom-4 -right-4 h-full w-full border-2 border-zinc-900/15" />
+
+            <div className="group relative overflow-hidden border-[6px] border-white bg-zinc-900 shadow-[0_35px_80px_-30px_rgba(0,0,0,0.55)]">
               <img
-                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=85&fit=crop"
-                alt="Industrial rubber plant operator"
-                className="w-full h-[520px] sm:h-[580px] object-cover object-top filter contrast-[1.05] transition-transform duration-700 group-hover:scale-[1.04]"
+                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&q=85&fit=crop"
+                alt="Rubber manufacturing facility in Lahore"
+                className="h-[430px] w-full object-cover object-top contrast-[1.05] transition-transform duration-700 group-hover:scale-[1.04] sm:h-[500px] lg:h-[560px]"
               />
 
-              {/* High-contrast industrial gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent pointer-events-none" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/10 to-transparent" />
 
-              {/* Orange Industrial Corner Accent */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 pointer-events-none border-b-2 border-l-2 border-orange-500" />
-
-              {/* Rating Stamp inside photo */}
-              <div className="absolute top-5 left-5 bg-orange-500 text-white px-4 py-3 shadow-xl">
-                <div className="font-heading text-3xl font-black leading-none">4.9★</div>
-                <div className="text-[10px] font-black uppercase tracking-wider text-black mt-0.5">
-                  Google Maps Verified
+              {/* Rating stamp */}
+              <div className="absolute left-5 top-5 bg-orange-500 px-3.5 py-2.5 text-white shadow-xl">
+                <div className="font-heading text-2xl font-black leading-none">4.9★</div>
+                <div className="mt-1 text-[9px] font-black uppercase tracking-[0.14em] text-black">
+                  Google verified
                 </div>
-                <div className="text-[11px] font-bold text-white leading-none">77 Genuine Reviews</div>
               </div>
 
-              {/* Bottom Caption Overlay */}
-              <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 border border-zinc-200 shadow-xl flex items-center justify-between">
-                <div>
-                  <div className="text-orange-600 text-[10px] font-extrabold uppercase tracking-widest font-heading">
-                    Wholesale Warehouse
+              {/* Corner accent */}
+              <div className="pointer-events-none absolute right-0 top-0 h-16 w-16 border-b-2 border-l-2 border-orange-500/70 bg-orange-500/10" />
+
+              {/* Bottom location card */}
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 border border-white/20 bg-zinc-950/80 p-3.5 text-white backdrop-blur-md sm:inset-x-5 sm:bottom-5">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 font-heading text-[10px] font-extrabold uppercase tracking-[0.2em] text-orange-400">
+                    <Factory size={11} />
+                    <span>Wholesale warehouse</span>
                   </div>
-                  <div className="font-heading font-black text-zinc-950 text-base sm:text-lg uppercase">
+                  <div className="mt-1 truncate font-heading text-sm font-black uppercase tracking-wide sm:text-base">
                     34 Jamia St, Fleming Rd, Lahore
                   </div>
                 </div>
-                <div className="w-10 h-10 bg-orange-500 text-white flex items-center justify-center flex-shrink-0">
-                  <Factory size={20} />
-                </div>
+                <a
+                  href="https://maps.google.com/?q=Wachowali+Bazaar+Lahore+Pakistan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open location in Google Maps"
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center bg-orange-500 text-black transition-colors hover:bg-white"
+                >
+                  <MapPin size={17} />
+                </a>
               </div>
             </div>
 
-            {/* Overlapping Sparks Thumbnail Card (Exact Reference Feature) */}
-            <div className="hidden sm:flex animate-float absolute -bottom-8 -left-8 bg-zinc-950 border-2 border-zinc-700 p-2 shadow-2xl w-48 flex-col gap-2 z-20 hover:border-orange-500 transition-colors duration-300">
-              <div className="relative h-24 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80"
-                  alt="Industrial manufacturing sparks"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                />
-                <span className="absolute top-1 left-1 bg-orange-500 text-black text-[9px] font-black uppercase px-1.5 py-0.5">
-                  100% RAW
-                </span>
+            {/* Floating spec card */}
+            <div className="animate-float absolute -left-5 bottom-24 z-20 hidden w-44 border-2 border-zinc-700 bg-zinc-950 p-4 text-white shadow-2xl transition-colors hover:border-orange-500 sm:block">
+              <div className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-orange-400">
+                Built to spec
               </div>
-              <div className="text-white font-heading font-bold text-xs uppercase px-1 pb-1">
-                Vulcanized Rubber Testing Facility
+              <div className="mt-1 font-heading text-3xl font-black leading-none">17MM</div>
+              <div className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                Vulcanized rubber
               </div>
+              <div className="mt-3 h-1 w-full bg-zinc-800">
+                <div className="h-full w-4/5 bg-orange-500" />
+              </div>
+            </div>
+
+            {/* Vertical side label */}
+            <div className="absolute -right-9 top-1/2 hidden -translate-y-1/2 xl:block">
+              <span className="block rotate-90 whitespace-nowrap font-mono text-[9px] font-bold uppercase tracking-[0.4em] text-zinc-400">
+                Factory direct · Lahore
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Industrial Ticker Ribbon (Full Width) */}
-      <div className="relative bg-orange-500 py-3 overflow-hidden border-y-2 border-zinc-900">
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-orange-500 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-orange-500 to-transparent z-10 pointer-events-none" />
-        <div className="animate-marquee whitespace-nowrap flex items-center">
+      {/* Stats band */}
+      <div className="relative z-10 border-t border-zinc-300/80 bg-white/50 backdrop-blur-sm">
+        <div className="shell grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <div
+              key={s.value}
+              className={`flex items-center gap-3 py-5 sm:gap-4 ${
+                i !== 0 ? 'lg:border-l lg:border-zinc-300/80 lg:pl-6' : ''
+              } ${i % 2 !== 0 ? 'border-l border-zinc-300/80 pl-4 sm:pl-6 lg:border-l' : ''} ${
+                i < 2 ? 'border-b border-zinc-300/80 lg:border-b-0' : ''
+              }`}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${i * 70}ms` }}
+            >
+              <div className="font-heading text-2xl font-black leading-none text-zinc-950 sm:text-3xl">
+                {s.value}
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] font-extrabold uppercase tracking-wider text-zinc-800">
+                  {s.label}
+                </div>
+                <div className="truncate text-[10px] font-medium text-zinc-500">{s.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Ticker */}
+      <div className="relative overflow-hidden border-y-2 border-zinc-900 bg-orange-500 py-2.5">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-orange-500 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-orange-500 to-transparent" />
+        <div className="animate-marquee flex items-center whitespace-nowrap">
           {[...Array(6)].map((_, i) => (
-            <span key={i} className="flex items-center gap-8 pr-8 font-heading font-black text-sm uppercase tracking-[0.2em] text-zinc-950">
+            <span
+              key={i}
+              className="flex items-center gap-7 pr-7 font-heading text-[11px] font-black uppercase tracking-[0.2em] text-zinc-950"
+            >
               <span>★ 17MM HEAVY-DUTY COW MATS</span>
               <span className="opacity-40">◆</span>
               <span>★ EVA INTERLOCKING FLOOR SHEETS</span>
