@@ -54,7 +54,7 @@ export default function IndustriesSection() {
     <section id="industries" className="py-20 lg:py-28 px-6 sm:px-10 lg:px-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-[1600px] mx-auto space-y-12">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-4 reveal">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Delivering Rubber Solutions<br />
             Across Diverse Industries
@@ -67,7 +67,7 @@ export default function IndustriesSection() {
         {/* 2-Column Split (Exact Reference Layout) */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left: Interactive List of Industries */}
-          <div className="lg:col-span-5 space-y-2.5">
+          <div className="lg:col-span-5 space-y-2.5 reveal-left">
             {industries.map((item) => {
               const isActive = activeId === item.id;
               return (
@@ -94,7 +94,7 @@ export default function IndustriesSection() {
           </div>
 
           {/* Right: Large Featured Photo Container */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 reveal-right delay-200">
             <div className="relative rounded-[32px] overflow-hidden shadow-2xl h-[440px] sm:h-[500px] bg-slate-900 border-4 border-white group">
               <img
                 src={activeIndustry.img}

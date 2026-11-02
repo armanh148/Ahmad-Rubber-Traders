@@ -46,7 +46,7 @@ export default function WhyChooseUsSection() {
     <section id="why-us" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-14">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 reveal">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Why Businesses Choose<br />
             Our Rubber Flooring
@@ -59,24 +59,23 @@ export default function WhyChooseUsSection() {
         {/* 2-Column Split: Image Left, Accordion Right */}
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Left Column: Image with Overlapping Floating Analytics Card */}
-          <div className="lg:col-span-6 relative mb-8 sm:mb-14 lg:mb-0">
+          <div className="lg:col-span-6 relative reveal-left">
             {/* Main Rounded Image */}
             <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl bg-slate-900 border-4 border-white">
               <img
                 src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&q=85&fit=crop"
                 alt="Industrial dairy flooring engineers at warehouse"
-                className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover object-center filter brightness-95"
+                className="w-full h-[360px] sm:h-[440px] lg:h-[500px] object-cover object-center filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Overlapping Floating Analytics Card - Responsive on Mobile & Desktop */}
-            <div className="relative sm:absolute sm:-bottom-8 sm:left-6 lg:left-8 mt-4 sm:mt-0 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-slate-100 max-w-sm sm:w-auto space-y-3 z-10 animate-fadeIn">
-              <div className="flex items-center gap-3.5 sm:gap-4">
-                {/* Circular Donut Gauge SVG (Matching reference image gauge) */}
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0">
+            {/* Overlapping Floating Analytics Card - DIRECTLY ON TOP OF IMAGE with Reduced Width */}
+            <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 lg:-bottom-6 lg:left-6 bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-2xl border border-slate-100 w-[260px] sm:w-[290px] space-y-2 sm:space-y-2.5 z-10 animate-fadeIn">
+              <div className="flex items-center gap-3">
+                {/* Circular Donut Gauge SVG */}
+                <div className="relative w-11 h-11 sm:w-13 sm:h-13 flex-shrink-0">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
-                    {/* Background circle */}
                     <path
                       className="text-slate-100"
                       strokeWidth="3.8"
@@ -84,7 +83,6 @@ export default function WhyChooseUsSection() {
                       fill="none"
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                     />
-                    {/* Progress stroke 99% */}
                     <path
                       className="text-sky-600"
                       strokeDasharray="99, 100"
@@ -95,36 +93,36 @@ export default function WhyChooseUsSection() {
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                     />
                   </svg>
-                  <div className="absolute inset-0 flex items-center justify-center font-extrabold text-xs text-slate-900">
+                  <div className="absolute inset-0 flex items-center justify-center font-extrabold text-[11px] sm:text-xs text-slate-900">
                     99%
                   </div>
                 </div>
 
                 <div>
-                  <div className="font-extrabold text-base sm:text-lg text-slate-900 leading-tight">
+                  <div className="font-extrabold text-sm sm:text-base text-slate-900 leading-tight">
                     Quality Rating
                   </div>
-                  <div className="flex items-center gap-1 text-yellow-500 font-extrabold text-xs mt-0.5">
-                    <Star size={12} fill="#eab308" />
+                  <div className="flex items-center gap-1 text-yellow-500 font-extrabold text-[11px] sm:text-xs mt-0.5">
+                    <Star size={11} fill="#eab308" />
                     <span className="text-slate-900 font-bold">4.9 / 5.0</span>
-                    <span className="text-slate-400 font-normal text-[11px]">(77 Maps Reviews)</span>
+                    <span className="text-slate-400 font-normal text-[10px]">(77 Reviews)</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Trusted by 500+ commercial dairy farms across Punjab &amp; Sindh with 100% genuine quality verification.
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-snug font-normal line-clamp-2">
+                Trusted by 500+ commercial dairy farms with 100% genuine quality verification.
               </p>
 
-              <div className="pt-2 border-t border-slate-100 flex items-center gap-2 text-emerald-600 font-extrabold text-xs">
-                <ShieldCheck size={15} className="flex-shrink-0" />
-                <span>Direct Factory Wholesale Guarantee</span>
+              <div className="pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-emerald-600 font-extrabold text-[10px] sm:text-[11px]">
+                <ShieldCheck size={13} className="flex-shrink-0" />
+                <span>Direct Factory Guarantee</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Clean Accordion / Divider List */}
-          <div className="lg:col-span-6 divide-y divide-slate-200">
+          <div className="lg:col-span-6 divide-y divide-slate-200 reveal-right delay-200">
             {accordionItems.map((item) => {
               const isOpen = openId === item.id;
               return (

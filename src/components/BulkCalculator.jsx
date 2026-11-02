@@ -51,7 +51,7 @@ export default function BulkCalculator() {
     <section id="calculator" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-12">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 reveal">
           <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-700 px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
             <Calculator size={14} />
             <span>Interactive B2B Cost Estimator</span>
@@ -67,7 +67,7 @@ export default function BulkCalculator() {
         </div>
 
         {/* 2-Column Calculator Box */}
-        <div className="bg-white rounded-3xl lg:rounded-[32px] p-5 sm:p-8 lg:p-12 shadow-xl border border-slate-200/80 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="bg-white rounded-3xl lg:rounded-[32px] p-5 sm:p-8 lg:p-12 shadow-xl border border-slate-200/80 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start reveal-scale delay-150">
           {/* Left: Input Form Controls */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5">
             {/* Step 1: Select Product */}

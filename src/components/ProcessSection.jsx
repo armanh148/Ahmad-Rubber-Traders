@@ -58,7 +58,7 @@ export default function ProcessSection() {
     <section id="steps" className="py-14 sm:py-20 lg:py-28 px-3 sm:px-8 lg:px-16 bg-white">
       <div className="max-w-[1600px] mx-auto space-y-8 sm:space-y-12 lg:space-y-14">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-4 px-2">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-4 px-2 reveal">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Simplified Ordering<br />
             in 4 Easy Steps
@@ -70,10 +70,12 @@ export default function ProcessSection() {
 
         {/* 2 CARDS PER ROW ON MOBILE & TABLET, 4 ON DESKTOP */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
-          {steps.map((step) => (
+          {steps.map((step, index) => (
             <div
               key={step.num}
-              className={`${step.bgColor} ${step.cardBorder} border sm:border-2 rounded-2xl sm:rounded-[28px] lg:rounded-[32px] p-3.5 sm:p-5 lg:p-7 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 min-h-[320px] sm:min-h-[390px] lg:min-h-[430px]`}
+              className={`${step.bgColor} ${step.cardBorder} border sm:border-2 rounded-2xl sm:rounded-[28px] lg:rounded-[32px] p-3.5 sm:p-5 lg:p-7 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 min-h-[320px] sm:min-h-[390px] lg:min-h-[430px] reveal ${
+                ['delay-100', 'delay-200', 'delay-300', 'delay-400'][index]
+              }`}
             >
               {/* Top: Step Number Badge & Title */}
               <div className="space-y-2.5 sm:space-y-4">

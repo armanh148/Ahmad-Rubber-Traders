@@ -118,7 +118,7 @@ export default function ClientReviewsSection() {
     <section id="reviews" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white border-t border-slate-100 overflow-hidden">
       <div className="max-w-[1600px] mx-auto space-y-8 sm:space-y-12">
         {/* Header with Title and Slider Arrow Buttons in 1 Row */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 reveal">
           <div className="space-y-2 sm:space-y-3">
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Hear What Our Clients Say
@@ -128,7 +128,7 @@ export default function ClientReviewsSection() {
             </p>
           </div>
 
-          {/* Slider Arrow Navigation Controls (Circle buttons matching reference design) */}
+          {/* Slider Arrow Navigation Controls */}
           <div className="flex items-center gap-3 self-end sm:self-auto flex-shrink-0">
             <button
               onClick={() => scroll('left')}
@@ -152,7 +152,7 @@ export default function ClientReviewsSection() {
         {/* SINGLE ROW SLIDER / CAROUSEL CONTAINER */}
         <div
           ref={sliderRef}
-          className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+          className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0 reveal delay-100"
         >
           {reviews.map((r, i) => (
             <div

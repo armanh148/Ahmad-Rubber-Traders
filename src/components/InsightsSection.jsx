@@ -112,7 +112,7 @@ export default function InsightsSection() {
     <section id="insights" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white border-t border-slate-100 overflow-hidden">
       <div className="max-w-[1600px] mx-auto space-y-8 sm:space-y-12">
         {/* Header with Title and Slider Buttons */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 reveal">
           <div className="space-y-2 sm:space-y-3">
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Our Latest Insights &amp;<br />
@@ -147,7 +147,7 @@ export default function InsightsSection() {
         {/* 2 CARDS PER ROW CAROUSEL / SLIDER CONTAINER ON MOBILE & TABLET, 4 ON DESKTOP */}
         <div
           ref={sliderRef}
-          className="flex flex-nowrap gap-3 sm:gap-5 lg:gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+          className="flex flex-nowrap gap-3 sm:gap-5 lg:gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0 reveal delay-100"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {articles.map((art) => (

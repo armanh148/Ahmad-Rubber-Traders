@@ -5,7 +5,7 @@ export default function MissionSection() {
     <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         {/* Centered Heading */}
-        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
+        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6 reveal">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.2] tracking-tight">
             Providing Smart, End-to-End Rubber Flooring Services Backed by Experience,
             Technology, and a Commitment to Durable Quality
@@ -29,8 +29,8 @@ export default function MissionSection() {
           </div>
         </div>
 
-        {/* Signature Geometric Semicircle & Stadium Arch Collage (Responsive for all screen sizes) */}
-        <div className="pt-10 sm:pt-16 lg:pt-20 flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 lg:gap-5 overflow-hidden py-4 select-none">
+        {/* Signature Geometric Semicircle & Stadium Arch Collage */}
+        <div className="pt-10 sm:pt-16 lg:pt-20 flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 lg:gap-5 overflow-hidden py-4 select-none reveal-scale delay-200">
           {/* Left Shape 1 */}
           <div className="w-6 sm:w-14 md:w-20 lg:w-28 h-16 sm:h-36 md:h-48 lg:h-60 bg-sky-300 rounded-l-full flex-shrink-0 shadow-sm" />
 

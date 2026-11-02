@@ -7,7 +7,7 @@ export default function CtaBannerSection() {
     <section className="py-12 sm:py-20 px-3 sm:px-6 lg:px-10 bg-white">
       <div className="max-w-[1600px] mx-auto">
         {/* Sky-Blue High-Impact Rounded Banner Card (Responsive for all screen sizes) */}
-        <div className="relative rounded-3xl sm:rounded-[36px] lg:rounded-[44px] bg-gradient-to-r from-sky-600 via-sky-500 to-cyan-500 text-white p-6 sm:p-10 lg:p-16 overflow-hidden shadow-2xl border border-sky-400/40">
+        <div className="relative rounded-3xl sm:rounded-[36px] lg:rounded-[44px] bg-gradient-to-r from-sky-600 via-sky-500 to-cyan-500 text-white p-6 sm:p-10 lg:p-16 overflow-hidden shadow-2xl border border-sky-400/40 reveal-scale">
           {/* Subtle geometric dot pattern */}
           <div
             className="absolute inset-0 opacity-15 pointer-events-none"
