@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, ShieldCheck, Star, Factory, CheckCircle2, Award } from 'lucide-react';
+import { ChevronDown, ChevronUp, ShieldCheck, Star, CheckCircle2 } from 'lucide-react';
 
 const accordionItems = [
   {
@@ -43,37 +43,38 @@ export default function WhyChooseUsSection() {
   const [openId, setOpenId] = useState(1);
 
   return (
-    <section id="why-us" className="py-20 lg:py-28 px-6 sm:px-10 lg:px-16 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-[1600px] mx-auto space-y-14">
+    <section id="why-us" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-slate-50 border-t border-slate-100">
+      <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-14">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Why Businesses Choose<br />
             Our Rubber Flooring
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+          <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal">
             We combine rigorous manufacturing standards, direct factory accessibility, and deep livestock safety engineering.
           </p>
         </div>
 
-        {/* 2-Column Split (Exact Reference Layout) */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left Column: Image with Overlapping Floating Analytics Card with Circular Donut Gauge */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative rounded-[36px] overflow-hidden shadow-2xl bg-slate-900 border-4 border-white">
+        {/* 2-Column Split: Image Left, Accordion Right */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
+          {/* Left Column: Image with Overlapping Floating Analytics Card */}
+          <div className="lg:col-span-6 relative mb-8 sm:mb-14 lg:mb-0">
+            {/* Main Rounded Image */}
+            <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl bg-slate-900 border-4 border-white">
               <img
-                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=85&fit=crop"
-                alt="Industrial workers in warehouse"
-                className="w-full h-[460px] sm:h-[520px] object-cover object-center filter brightness-95"
+                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&q=85&fit=crop"
+                alt="Industrial dairy flooring engineers at warehouse"
+                className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover object-center filter brightness-95"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Overlapping Floating Analytics Card with Circular Donut SVG (Exact reference reproduction) */}
-            <div className="absolute -bottom-8 -left-4 sm:left-8 bg-white rounded-3xl p-6 shadow-2xl border border-slate-100 max-w-sm space-y-3 animate-fadeIn">
-              <div className="flex items-center gap-4">
+            {/* Overlapping Floating Analytics Card - Responsive on Mobile & Desktop */}
+            <div className="relative sm:absolute sm:-bottom-8 sm:left-6 lg:left-8 mt-4 sm:mt-0 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-slate-100 max-w-sm sm:w-auto space-y-3 z-10 animate-fadeIn">
+              <div className="flex items-center gap-3.5 sm:gap-4">
                 {/* Circular Donut Gauge SVG (Matching reference image gauge) */}
-                <div className="relative w-16 h-16 flex-shrink-0">
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                     {/* Background circle */}
                     <path
@@ -83,10 +84,10 @@ export default function WhyChooseUsSection() {
                       fill="none"
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                     />
-                    {/* Progress stroke 98% */}
+                    {/* Progress stroke 99% */}
                     <path
                       className="text-sky-600"
-                      strokeDasharray="98, 100"
+                      strokeDasharray="99, 100"
                       strokeWidth="3.8"
                       strokeLinecap="round"
                       stroke="currentColor"
@@ -100,13 +101,13 @@ export default function WhyChooseUsSection() {
                 </div>
 
                 <div>
-                  <div className="font-extrabold text-lg text-slate-900 leading-tight">
+                  <div className="font-extrabold text-base sm:text-lg text-slate-900 leading-tight">
                     Quality Rating
                   </div>
                   <div className="flex items-center gap-1 text-yellow-500 font-extrabold text-xs mt-0.5">
                     <Star size={12} fill="#eab308" />
-                    <span className="text-slate-900">4.9 / 5.0</span>
-                    <span className="text-slate-400 font-normal">(77 Maps Reviews)</span>
+                    <span className="text-slate-900 font-bold">4.9 / 5.0</span>
+                    <span className="text-slate-400 font-normal text-[11px]">(77 Maps Reviews)</span>
                   </div>
                 </div>
               </div>
@@ -116,7 +117,7 @@ export default function WhyChooseUsSection() {
               </p>
 
               <div className="pt-2 border-t border-slate-100 flex items-center gap-2 text-emerald-600 font-extrabold text-xs">
-                <ShieldCheck size={16} />
+                <ShieldCheck size={15} className="flex-shrink-0" />
                 <span>Direct Factory Wholesale Guarantee</span>
               </div>
             </div>
@@ -127,24 +128,24 @@ export default function WhyChooseUsSection() {
             {accordionItems.map((item) => {
               const isOpen = openId === item.id;
               return (
-                <div key={item.id} className="py-4 sm:py-5">
+                <div key={item.id} className="py-3.5 sm:py-5">
                   <button
                     onClick={() => setOpenId(isOpen ? 0 : item.id)}
                     className="w-full flex items-center justify-between text-left group"
                   >
-                    <span className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                    <span className="text-sm sm:text-base lg:text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
                       {item.title}
                     </span>
-                    <span className="ml-4 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-sky-100 group-hover:text-sky-600 transition-colors flex-shrink-0">
+                    <span className="ml-3 sm:ml-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-sky-100 group-hover:text-sky-600 transition-colors flex-shrink-0">
                       {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </span>
                   </button>
 
                   {isOpen && (
-                    <div className="pt-3 space-y-3.5 pr-6 text-sm text-slate-600 leading-relaxed animate-fadeIn">
+                    <div className="pt-2.5 sm:pt-3 space-y-3 pr-2 sm:pr-6 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fadeIn">
                       <p>{item.content}</p>
-                      <div className="inline-flex items-center gap-2 bg-sky-50 text-sky-700 font-bold text-xs px-3.5 py-1.5 rounded-full border border-sky-200">
-                        <CheckCircle2 size={13} className="text-sky-600" />
+                      <div className="inline-flex items-center gap-2 bg-sky-50 text-sky-700 font-bold text-xs px-3 sm:px-3.5 py-1.5 rounded-full border border-sky-200">
+                        <CheckCircle2 size={13} className="text-sky-600 flex-shrink-0" />
                         <span>Key Advantage: {item.stat}</span>
                       </div>
                     </div>

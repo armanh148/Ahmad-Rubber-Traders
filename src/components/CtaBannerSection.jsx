@@ -34,27 +34,27 @@ export default function CtaBannerSection() {
                 Direct factory pricing, custom mat cuts, and reliable cargo delivery to all major cities across Pakistan. Speak directly with our technical team today.
               </p>
 
-              {/* Pill CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              {/* Pill CTA Buttons in 1 Line on All Screens */}
+              <div className="flex flex-row items-center gap-2 sm:gap-3 pt-1">
                 <a
                   href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20am%20ready%20to%20order%20mats.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 font-extrabold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all active:scale-95 group"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 sm:gap-3 bg-white hover:bg-slate-100 text-slate-900 font-extrabold px-3.5 sm:px-8 py-3 sm:py-4 rounded-full text-[11px] sm:text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all active:scale-95 group whitespace-nowrap"
                 >
-                  <MessageCircle size={16} className="text-emerald-600" />
-                  <span>Start WhatsApp Order</span>
-                  <div className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                    <ArrowRight size={12} />
+                  <MessageCircle size={15} className="text-emerald-600 flex-shrink-0" />
+                  <span>WhatsApp Order</span>
+                  <div className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+                    <ArrowRight size={11} />
                   </div>
                 </a>
 
                 <a
                   href="tel:+923116103661"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-5 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-wider transition-colors backdrop-blur-md border border-white/30"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-3 sm:px-7 py-3 sm:py-4 rounded-full text-[11px] sm:text-xs uppercase tracking-wider transition-colors backdrop-blur-md border border-white/30 whitespace-nowrap"
                 >
-                  <Phone size={14} />
-                  <span>+92 311 6103661</span>
+                  <Phone size={13} className="flex-shrink-0" />
+                  <span>Call Direct</span>
                 </a>
               </div>
 

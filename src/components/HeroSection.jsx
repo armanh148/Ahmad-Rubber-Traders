@@ -77,7 +77,8 @@ export default function HeroSection() {
               <strong className="text-white font-bold">milking parlor drainage mats</strong>. Built for extreme bovine wear, zero hoof slips, and direct wholesale pricing.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            {/* CTA Buttons in 1 Line on All Screens */}
+            <div className="flex flex-row items-center gap-2 sm:gap-3 pt-1">
               {/* White Pill Button with Arrow */}
               <a
                 href="#calculator"
@@ -85,11 +86,11 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 font-extrabold px-6 sm:px-7 py-3.5 rounded-full text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all active:scale-95 group"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 sm:gap-3 bg-white hover:bg-slate-100 text-slate-900 font-extrabold px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-full text-[11px] sm:text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all active:scale-95 group whitespace-nowrap"
               >
                 <span>Request Quote</span>
-                <div className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                  <ArrowRight size={12} />
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+                  <ArrowRight size={11} />
                 </div>
               </a>
 
@@ -98,7 +99,7 @@ export default function HeroSection() {
                 href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20want%20to%20order%20mats.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-sky-600/90 hover:bg-sky-500 text-white font-bold px-6 sm:px-7 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all backdrop-blur-md border border-sky-400/40 shadow-lg active:scale-95"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-sky-600/95 hover:bg-sky-500 text-white font-bold px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-full text-[11px] sm:text-xs uppercase tracking-wider transition-all backdrop-blur-md border border-sky-400/40 shadow-lg active:scale-95 whitespace-nowrap"
               >
                 <span>Direct WhatsApp</span>
               </a>

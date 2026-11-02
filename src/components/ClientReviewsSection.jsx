@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { Star, Quote, CheckCircle2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Star, Quote, CheckCircle2, ArrowLeft, ArrowRight, Phone, MessageCircle } from 'lucide-react';
+
+const WHATSAPP = '923116103661';
 
 const reviews = [
   {
@@ -42,88 +44,200 @@ const reviews = [
     rating: 5,
     matsOrdered: '120 Heavy Mats',
   },
+  {
+    id: 5,
+    name: 'Haji Noor Muhammad',
+    role: 'Multan Model Dairy Complex, Multan',
+    img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&q=85&fit=crop&crop=face',
+    quote:
+      'Direct factory rates saved us more than Rs. 150,000 compared to third-party retailers in Multan. Thickness was exactly 17mm as committed, with high tensile raw rubber quality.',
+    rating: 5,
+    matsOrdered: '150 Cow Mats',
+  },
+  {
+    id: 6,
+    name: 'Chaudhry Rizwan',
+    role: 'Gujranwala Agro Milk Processing',
+    img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&q=85&fit=crop&crop=face',
+    quote:
+      'Very professional team in Wachowali Lahore. We visited their depot, checked the mats in person, and our order was dispatched the same day via cargo. Highly recommended for commercial farms.',
+    rating: 5,
+    matsOrdered: '90 Milking Mats',
+  },
 ];
 
 export default function ClientReviewsSection() {
-  const [activeId, setActiveId] = useState(2); // default featured
+  const sliderRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const checkScroll = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+      // calculate current card index for dots
+      const cardWidth = 380;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveIndex(Math.min(reviews.length - 1, Math.max(0, index)));
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const current = sliderRef.current;
+    if (current) {
+      current.addEventListener('scroll', checkScroll, { passive: true });
+      return () => current.removeEventListener('scroll', checkScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (sliderRef.current) {
+      const { clientWidth } = sliderRef.current;
+      const scrollAmount = clientWidth > 768 ? clientWidth * 0.75 : clientWidth * 0.9;
+      sliderRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollToIndex = (index) => {
+    if (sliderRef.current) {
+      const card = sliderRef.current.children[index];
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      }
+    }
+  };
 
   return (
-    <section id="reviews" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white border-t border-slate-100">
-      <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-14">
-        {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Hear What Our Clients Say
-          </h2>
-          <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal">
-            Real feedback from commercial dairy owners, livestock breeders, and agricultural facility managers across Pakistan.
-          </p>
+    <section id="reviews" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white border-t border-slate-100 overflow-hidden">
+      <div className="max-w-[1600px] mx-auto space-y-8 sm:space-y-12">
+        {/* Header with Title and Slider Arrow Buttons in 1 Row */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div className="space-y-2 sm:space-y-3">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Hear What Our Clients Say
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal max-w-2xl">
+              Real feedback from commercial dairy owners, livestock breeders, and agricultural facility managers across Pakistan.
+            </p>
+          </div>
+
+          {/* Slider Arrow Navigation Controls (Circle buttons matching reference design) */}
+          <div className="flex items-center gap-3 self-end sm:self-auto flex-shrink-0">
+            <button
+              onClick={() => scroll('left')}
+              disabled={!canScrollLeft}
+              className="w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 disabled:opacity-35 disabled:cursor-not-allowed transition-all shadow-xs active:scale-95"
+              aria-label="Previous review"
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              disabled={!canScrollRight}
+              className="w-12 h-12 rounded-full bg-sky-600 text-white flex items-center justify-center hover:bg-sky-500 disabled:opacity-35 disabled:cursor-not-allowed transition-all shadow-md shadow-sky-600/25 active:scale-95"
+              aria-label="Next review"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
 
-        {/* Responsive Testimonial Cards: 1 col on mobile, 2 col on tablet, 12-col bento on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
-          {reviews.map((r) => {
-            const isActive = activeId === r.id;
-            return (
-              <div
-                key={r.id}
-                onClick={() => setActiveId(r.id)}
-                className={`relative rounded-3xl lg:rounded-[32px] overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:shadow-2xl bg-slate-900 group ${
-                  isActive
-                    ? 'sm:col-span-2 lg:col-span-6 h-[440px] sm:h-[480px] lg:h-[520px] ring-4 ring-sky-500 shadow-2xl'
-                    : 'sm:col-span-1 lg:col-span-2 h-[380px] sm:h-[440px] lg:h-[520px] hover:scale-[1.02]'
-                }`}
-              >
-                {/* Background Image */}
-                <img
-                  src={r.img}
-                  alt={r.name}
-                  className={`absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ${
-                    isActive ? 'scale-100 brightness-95' : 'filter brightness-75 group-hover:scale-105'
-                  }`}
-                />
+        {/* SINGLE ROW SLIDER / CAROUSEL CONTAINER */}
+        <div
+          ref={sliderRef}
+          className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+        >
+          {reviews.map((r, i) => (
+            <div
+              key={r.id}
+              className="w-[280px] sm:w-[360px] md:w-[400px] lg:w-[420px] flex-shrink-0 snap-start relative rounded-3xl lg:rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-900 h-[460px] sm:h-[520px] group flex flex-col justify-between p-5 sm:p-6 text-white border border-slate-200/40"
+            >
+              {/* Photo Background with Smooth Zoom */}
+              <img
+                src={r.img}
+                alt={r.name}
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 filter brightness-[0.72] group-hover:scale-105"
+              />
 
-                {/* Gradient Scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent pointer-events-none" />
+              {/* Gradient Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-slate-950/20 pointer-events-none" />
 
-                {/* Rating Badge Top Left */}
-                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10 flex gap-0.5 bg-black/50 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20 shadow-md">
-                  {[...Array(r.rating)].map((_, i) => (
-                    <Star key={i} size={11} fill="#eab308" className="text-yellow-400" />
+              {/* Rating Badge Top Left & WhatsApp Link Top Right */}
+              <div className="relative z-10 flex items-center justify-between">
+                <div className="flex gap-0.5 bg-black/45 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-sm">
+                  {[...Array(r.rating)].map((_, idx) => (
+                    <Star key={idx} size={11} fill="#eab308" className="text-yellow-400" />
                   ))}
                 </div>
 
-                {/* Card Bottom Area */}
-                <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-10 text-white space-y-2.5 sm:space-y-3">
-                  {/* Expanded Quote Box if Active */}
-                  {isActive && (
-                    <div className="glass-dark rounded-2xl p-3.5 sm:p-5 space-y-2 sm:space-y-2.5 shadow-2xl border border-white/20 animate-fadeIn">
-                      <Quote size={20} className="text-sky-400 opacity-90" />
-                      <p className="text-xs sm:text-sm text-slate-100 leading-relaxed italic font-normal line-clamp-4 sm:line-clamp-none">
-                        "{r.quote}"
-                      </p>
-                      <div className="flex items-center justify-between pt-1.5 sm:pt-2 border-t border-white/15 text-[10px] sm:text-[11px] text-slate-300">
-                        <span className="text-emerald-400 font-bold flex items-center gap-1">
-                          <CheckCircle2 size={12} /> Verified Buyer
-                        </span>
-                        <span className="font-mono">{r.matsOrdered}</span>
-                      </div>
-                    </div>
-                  )}
+                <a
+                  href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20saw%20${encodeURIComponent(
+                    r.name
+                  )}%27s%20review%20and%20want%20more%20details.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-white/20 hover:bg-emerald-600 text-white backdrop-blur-md flex items-center justify-center transition-colors border border-white/20 shadow-md"
+                  aria-label="Direct WhatsApp inquiry"
+                >
+                  <MessageCircle size={15} />
+                </a>
+              </div>
 
-                  {/* Name and Designation */}
-                  <div>
-                    <h3 className="font-extrabold text-base sm:text-lg lg:text-xl text-white leading-tight">
-                      {r.name}
-                    </h3>
-                    <div className="text-sky-300 text-[11px] sm:text-xs font-semibold mt-0.5 truncate">
-                      {r.role}
-                    </div>
+              {/* Bottom Glassmorphic Quotation Box */}
+              <div className="relative z-10 space-y-3">
+                <div className="glass-dark rounded-2xl p-4 sm:p-5 space-y-2.5 shadow-xl border border-white/15">
+                  <Quote size={20} className="text-sky-400 opacity-90" />
+                  <p className="text-xs sm:text-sm text-slate-100 leading-relaxed italic font-normal line-clamp-4">
+                    "{r.quote}"
+                  </p>
+                  <div className="flex items-center justify-between pt-2 border-t border-white/15 text-[11px] text-slate-300 font-medium">
+                    <span className="text-emerald-400 font-bold flex items-center gap-1">
+                      <CheckCircle2 size={12} /> Verified Buyer
+                    </span>
+                    <span className="font-mono text-sky-300">{r.matsOrdered}</span>
+                  </div>
+                </div>
+
+                {/* Name & Role */}
+                <div className="pt-1">
+                  <h3 className="font-extrabold text-base sm:text-lg text-white leading-tight">
+                    {r.name}
+                  </h3>
+                  <div className="text-sky-300 text-xs font-semibold mt-0.5 truncate">
+                    {r.role}
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Pagination Dots & Swipe Hint */}
+        <div className="flex items-center justify-between pt-2">
+          {/* Indicator dots */}
+          <div className="flex items-center gap-2">
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollToIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeIndex === i ? 'w-8 bg-sky-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+                aria-label={`Jump to review ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <span className="text-xs text-slate-400 font-medium hidden sm:inline">
+            ← Drag or click arrows to explore reviews →
+          </span>
         </div>
       </div>
     </section>
