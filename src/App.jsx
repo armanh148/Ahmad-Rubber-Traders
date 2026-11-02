@@ -1,5 +1,3 @@
-import TopInfoBar from './components/TopInfoBar';
-import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import MissionSection from './components/MissionSection';
 import SolutionsSection from './components/SolutionsSection';
@@ -15,9 +13,7 @@ import FloatingActions from './components/FloatingActions';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 antialiased selection:bg-sky-500 selection:text-white">
-      <TopInfoBar />
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased selection:bg-sky-500 selection:text-white">
       <main>
         <HeroSection />
         <MissionSection />

@@ -48,78 +48,75 @@ export default function ClientReviewsSection() {
   const [activeId, setActiveId] = useState(2); // default featured
 
   return (
-    <section id="reviews" className="py-20 lg:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto space-y-14">
+    <section id="reviews" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-16 bg-white border-t border-slate-100">
+      <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-14">
         {/* Centered Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Hear What Our Clients Say
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal">
             Real feedback from commercial dairy owners, livestock breeders, and agricultural facility managers across Pakistan.
           </p>
         </div>
 
-        {/* 4 Tall Video/Portrait Testimonial Cards (Exact Reference Reproduction) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 items-stretch">
+        {/* Responsive Testimonial Cards: 1 col on mobile, 2 col on tablet, 12-col bento on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
           {reviews.map((r) => {
             const isActive = activeId === r.id;
             return (
               <div
                 key={r.id}
                 onClick={() => setActiveId(r.id)}
-                className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:shadow-2xl ${
+                className={`relative rounded-3xl lg:rounded-[32px] overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:shadow-2xl bg-slate-900 group ${
                   isActive
-                    ? 'lg:col-span-5 h-[460px] sm:h-[500px] ring-2 ring-sky-500'
-                    : 'lg:col-span-2.33 h-[420px] sm:h-[500px] hover:scale-[1.02]'
-                } bg-slate-900 group`}
-                style={{
-                  gridColumn: isActive ? 'span 5 / span 5' : 'span 2 / span 2',
-                }}
+                    ? 'sm:col-span-2 lg:col-span-6 h-[440px] sm:h-[480px] lg:h-[520px] ring-4 ring-sky-500 shadow-2xl'
+                    : 'sm:col-span-1 lg:col-span-2 h-[380px] sm:h-[440px] lg:h-[520px] hover:scale-[1.02]'
+                }`}
               >
                 {/* Background Image */}
                 <img
                   src={r.img}
                   alt={r.name}
                   className={`absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ${
-                    isActive ? 'scale-100 brightness-90' : 'filter brightness-75 group-hover:scale-105'
+                    isActive ? 'scale-100 brightness-95' : 'filter brightness-75 group-hover:scale-105'
                   }`}
                 />
 
                 {/* Gradient Scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent pointer-events-none" />
 
                 {/* Rating Badge Top Left */}
-                <div className="absolute top-4 left-4 z-10 flex gap-0.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10 flex gap-0.5 bg-black/50 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20 shadow-md">
                   {[...Array(r.rating)].map((_, i) => (
                     <Star key={i} size={11} fill="#eab308" className="text-yellow-400" />
                   ))}
                 </div>
 
                 {/* Card Bottom Area */}
-                <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-10 text-white space-y-2.5">
+                <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-10 text-white space-y-2.5 sm:space-y-3">
                   {/* Expanded Quote Box if Active */}
-                  {isActive ? (
-                    <div className="bg-slate-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 space-y-2 shadow-xl animate-fadeIn">
-                      <Quote size={20} className="text-sky-400 opacity-80" />
-                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
+                  {isActive && (
+                    <div className="glass-dark rounded-2xl p-3.5 sm:p-5 space-y-2 sm:space-y-2.5 shadow-2xl border border-white/20 animate-fadeIn">
+                      <Quote size={20} className="text-sky-400 opacity-90" />
+                      <p className="text-xs sm:text-sm text-slate-100 leading-relaxed italic font-normal line-clamp-4 sm:line-clamp-none">
                         "{r.quote}"
                       </p>
-                      <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[11px] text-slate-400">
-                        <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                          <CheckCircle2 size={12} /> Verified Order
+                      <div className="flex items-center justify-between pt-1.5 sm:pt-2 border-t border-white/15 text-[10px] sm:text-[11px] text-slate-300">
+                        <span className="text-emerald-400 font-bold flex items-center gap-1">
+                          <CheckCircle2 size={12} /> Verified Buyer
                         </span>
-                        <span>{r.matsOrdered}</span>
+                        <span className="font-mono">{r.matsOrdered}</span>
                       </div>
                     </div>
-                  ) : null}
+                  )}
 
                   {/* Name and Designation */}
                   <div>
-                    <h3 className="font-extrabold text-base sm:text-lg text-white leading-tight">
+                    <h3 className="font-extrabold text-base sm:text-lg lg:text-xl text-white leading-tight">
                       {r.name}
                     </h3>
-                    <div className="text-sky-300 text-xs font-medium mt-0.5 truncate">
+                    <div className="text-sky-300 text-[11px] sm:text-xs font-semibold mt-0.5 truncate">
                       {r.role}
                     </div>
                   </div>
@@ -132,4 +129,3 @@ export default function ClientReviewsSection() {
     </section>
   );
 }
-

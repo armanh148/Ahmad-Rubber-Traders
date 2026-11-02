@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, BookOpen } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 
 const articles = [
   {
@@ -38,11 +38,11 @@ const articles = [
 export default function InsightsSection() {
   return (
     <section className="py-20 lg:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-[1600px] mx-auto space-y-12">
         {/* Header (Exact Reference Layout) */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div className="space-y-2">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Our Latest Insights &amp;<br />
               Industry Updates
             </h2>
@@ -57,25 +57,25 @@ export default function InsightsSection() {
           {articles.map((art) => (
             <div
               key={art.id}
-              className="group relative h-[440px] sm:h-[480px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between p-6 text-white"
+              className="group relative h-[440px] sm:h-[480px] rounded-[32px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between p-7 text-white border border-slate-200/50"
             >
-              {/* Photo Background */}
+              {/* Photo Background with Smooth Zoom */}
               <img
                 src={art.img}
                 alt={art.title}
-                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.72]"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.68] contrast-[1.05]"
               />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-950/20" />
+              {/* Gradient Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-slate-950/20 pointer-events-none" />
 
-              {/* Top Tag & Date */}
+              {/* Top Meta: Tag & Date */}
               <div className="relative z-10 flex items-center justify-between text-xs">
-                <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border border-white/20">
+                <span className="bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider border border-white/25 shadow-sm">
                   {art.category}
                 </span>
-                <span className="text-slate-300 text-[11px] font-medium flex items-center gap-1">
-                  <Calendar size={11} /> {art.date}
+                <span className="text-slate-300 text-[11px] font-medium flex items-center gap-1.5">
+                  <Calendar size={12} /> {art.date}
                 </span>
               </div>
 
@@ -84,7 +84,7 @@ export default function InsightsSection() {
                 <h3 className="font-extrabold text-lg sm:text-xl leading-snug tracking-tight text-white group-hover:text-sky-200 transition-colors">
                   {art.title}
                 </h3>
-                <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+                <p className="text-slate-300 text-xs leading-relaxed line-clamp-2 font-normal">
                   {art.excerpt}
                 </p>
 
@@ -93,10 +93,10 @@ export default function InsightsSection() {
                     href="https://wa.me/923116103661?text=Hello%2C%20I%20want%20to%20learn%20more%20about%20dairy%20mat%20installation."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white/90 hover:bg-white text-slate-950 font-bold px-4 py-2 rounded-full text-xs transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-white/90 hover:bg-white text-slate-950 font-extrabold px-5 py-2.5 rounded-full text-xs transition-all shadow-md group/btn"
                   >
                     <span>Read Guide</span>
-                    <ArrowRight size={12} />
+                    <ArrowRight size={12} className="group-hover/btn:translate-x-0.5 transition-transform" />
                   </a>
                 </div>
               </div>

@@ -35,21 +35,21 @@ export default function ModernFooter() {
   };
 
   return (
-    <footer id="contact" className="bg-white border-t border-slate-200 text-slate-700 pt-16 pb-12 px-6 sm:px-10 lg:px-16">
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Top 4-Column Grid (Exact Reference Layout) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand Info (2 cols on lg) */}
-          <div className="col-span-2 space-y-4">
+    <footer id="contact" className="bg-white border-t border-slate-200 text-slate-700 pt-12 sm:pt-16 pb-10 sm:pb-12 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-[1600px] mx-auto space-y-10 sm:space-y-14">
+        {/* Top Responsive Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Brand Info (Full on mobile, 2 cols on lg) */}
+          <div className="sm:col-span-2 space-y-3.5 sm:space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-sky-500/20">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white font-extrabold text-base sm:text-lg shadow-md shadow-sky-500/20 flex-shrink-0">
                 ART
               </div>
               <div>
-                <div className="font-extrabold text-slate-900 text-lg leading-tight tracking-tight">
+                <div className="font-extrabold text-slate-900 text-base sm:text-lg leading-tight tracking-tight">
                   Ahmad Rubber Traders
                 </div>
-                <div className="text-sky-600 text-[11px] font-semibold tracking-wide">
+                <div className="text-sky-600 text-[10px] sm:text-[11px] font-semibold tracking-wide">
                   Wachowali Bazaar, Lahore
                 </div>
               </div>
@@ -60,10 +60,10 @@ export default function ModernFooter() {
               EVA interlocking sheets, and milking parlor drainage flooring.
             </p>
 
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-800">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-800 pt-1">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={12} fill="#eab308" className="text-yellow-400" />
+                  <Star key={i} size={11} fill="#eab308" className="text-yellow-400" />
                 ))}
               </div>
               <span>4.9★ Rated on Google Maps</span>
@@ -123,7 +123,7 @@ export default function ModernFooter() {
               </p>
               <p className="flex items-center gap-2">
                 <Phone size={14} className="text-sky-600 flex-shrink-0" />
-                <a href="tel:+923116103661" className="text-slate-900 font-bold hover:text-sky-600">
+                <a href="tel:+923116103661" className="text-slate-900 font-bold hover:text-sky-600 font-mono">
                   +92 311 6103661
                 </a>
               </p>
@@ -142,13 +142,13 @@ export default function ModernFooter() {
           </div>
         </div>
 
-        {/* Middle: Fast WhatsApp Inquiry Bar (Exact Reference Detail) */}
-        <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-50 p-6 rounded-2xl">
+        {/* Middle: Fast WhatsApp Inquiry Bar */}
+        <div className="pt-6 sm:pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-50 p-5 sm:p-6 rounded-2xl">
           <div className="space-y-0.5 text-center sm:text-left">
-            <div className="font-bold text-slate-900 text-sm">
+            <div className="font-bold text-slate-900 text-xs sm:text-sm">
               Need immediate pricing for a custom barn project?
             </div>
-            <div className="text-xs text-slate-500">
+            <div className="text-[11px] sm:text-xs text-slate-500">
               Direct factory quotes within 15 minutes during business hours (9 AM - 7 PM).
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function ModernFooter() {
             href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20have%20an%20urgent%20pricing%20question.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 whitespace-nowrap"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 whitespace-nowrap"
           >
             <MessageCircle size={14} />
             <span>Chat With Factory Rep</span>
@@ -166,11 +166,11 @@ export default function ModernFooter() {
         </div>
 
         {/* Bottom Bar: Copyright & Verified status */}
-        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-400 text-center sm:text-left">
           <div>
             © {new Date().getFullYear()} Ahmad Rubber Traders. All rights reserved. Lahore, Pakistan.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center gap-4">
             <span className="flex items-center gap-1.5 text-slate-600 font-medium">
               <ShieldCheck size={14} className="text-emerald-500" />
               Verified on Google Maps &amp; WhatsApp Business
@@ -181,4 +181,3 @@ export default function ModernFooter() {
     </footer>
   );
 }
-
