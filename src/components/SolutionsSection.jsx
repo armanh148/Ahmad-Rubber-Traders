@@ -1,187 +1,129 @@
-import { ArrowRight, MessageCircle } from 'lucide-react';
-import SectionHeading from './SectionHeading';
+import { useState } from 'react';
+import { ArrowLeft, ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
+
+const WHATSAPP = '923116103661';
 
 const solutions = [
   {
-    num: '01',
-    title: 'DAIRY COW MATS',
-    desc: 'Heavy-duty 17mm vulcanized rubber mats with an anti-slip ribbed top and shock-absorbing underside. Protects cow knees, hocks, and teats.',
-    img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1000&q=80',
-    specs: '17mm · 1.8 × 0.9m · ~12 kg',
+    id: 1,
+    title: 'Heavy-Duty Dairy Cow Mats',
+    subtitle: '17mm Vulcanized Anti-Slip Rubber',
+    desc: 'Reduces cow lameness, joint swelling & mastitis. Provides heavy shock absorption with grooved underside for moisture drainage.',
+    img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=85&fit=crop',
+    tag: 'Best Seller',
+    specs: '17mm · 1.8 × 0.9m (6×3 ft) · ~12 kg',
   },
   {
-    num: '02',
-    title: 'EVA FLOORING SHEETS',
-    desc: 'High-density interlocking EVA foam tiles with a thermal cold barrier, waterproof body, and fast DIY installation.',
-    img: 'https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?w=600&q=80',
+    id: 2,
+    title: 'EVA Interlocking Flooring Sheets',
+    subtitle: 'High-Density Thermal Insulation Tiles',
+    desc: 'Lightweight, closed-cell foam puzzle tiles that isolate cold damp concrete. Ideal for barns, feed alleys, warehouses and commercial gyms.',
+    img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=85&fit=crop',
+    tag: 'Modular Tiles',
     specs: '10–25mm · 60 × 60cm · ~2.5 kg',
   },
   {
-    num: '03',
-    title: 'MILKING PARLOR MATS',
-    desc: 'Hygiene-grade waterproof mats with underside drainage grooves. Non-porous, easily sanitized, built for automated parlors.',
-    img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80',
+    id: 3,
+    title: 'Milking Parlor Drainage Mats',
+    subtitle: '20mm Waterproof & Hygiene Certified',
+    desc: 'Deep underside drainage channels facilitate rapid daily washdown. Non-porous antibacterial surface resistant to harsh chemical cleansers.',
+    img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=85&fit=crop',
+    tag: 'Hygiene Caliber',
     specs: '20mm · 2.0 × 1.0m · ~15 kg',
   },
 ];
 
-const waLink = (title) =>
-  `https://wa.me/923116103661?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20need%20pricing%20for%20${encodeURIComponent(
-    title
-  )}.`;
-
 export default function SolutionsSection() {
-  const [featured, ...rest] = solutions;
+  const [scrollIndex, setScrollIndex] = useState(0);
 
   return (
-    <section
-      id="solutions"
-      className="section-pad relative overflow-hidden bg-zinc-950 text-white"
-    >
-      {/* Background texture & glow */}
-      <div className="pointer-events-none absolute inset-0 bg-grid-dark opacity-15" />
-      <div className="animate-glow pointer-events-none absolute -right-20 -top-20 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
-      <div
-        className="animate-glow pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-orange-500/5 blur-3xl"
-        style={{ animationDelay: '-4.5s' }}
-      />
-
-      <div className="shell relative">
-        {/* Header */}
-        <div className="grid items-end gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <SectionHeading
-              dark
-              index="02"
-              eyebrow="Product solutions"
-              title="ONE ROOF."
-              accent="EVERY SURFACE."
-              description="Heavy agricultural and commercial flooring supplies, manufactured and dispatched from our Lahore facility."
-            />
+    <section id="solutions" className="py-20 lg:py-28 px-6 sm:px-10 lg:px-16 bg-slate-50 border-t border-slate-100">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header with Title and Slider Buttons (Exact Reference Layout) */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div className="space-y-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+              Comprehensive Rubber<br />
+              Solutions for Every Need
+            </h2>
           </div>
-          <div
-            className="flex flex-col items-start gap-5 lg:col-span-5 lg:items-end"
-            data-reveal="up"
-            style={{ '--reveal-delay': '180ms' }}
-          >
-            <p className="max-w-sm text-sm leading-relaxed text-zinc-400 lg:text-right">
-              Three core product lines, one factory-direct supply chain. Custom cuts and
-              thicknesses available on bulk orders.
-            </p>
-            <a
-              href="#calculator"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="btn-shine group inline-flex items-center gap-2.5 border border-zinc-700 bg-zinc-900 px-6 py-3.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-white transition-all hover:-translate-y-0.5 hover:border-orange-500 hover:bg-orange-500 hover:text-black"
+
+          {/* Slider Arrow Buttons (Circle styles matching reference) */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setScrollIndex((prev) => Math.max(0, prev - 1))}
+              disabled={scrollIndex === 0}
+              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-slate-200 disabled:opacity-40 transition-colors"
+              aria-label="Previous slide"
             >
-              <span>Get a quote</span>
-              <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-            </a>
+              <ArrowLeft size={18} />
+            </button>
+            <button
+              onClick={() => setScrollIndex((prev) => Math.min(solutions.length - 1, prev + 1))}
+              disabled={scrollIndex === solutions.length - 1}
+              className="w-11 h-11 rounded-full bg-sky-600 text-white flex items-center justify-center hover:bg-sky-700 disabled:opacity-40 transition-colors shadow-sm"
+              aria-label="Next slide"
+            >
+              <ArrowRight size={18} />
+            </button>
           </div>
         </div>
 
-        {/* Bento grid */}
-        <div className="mt-14 grid gap-5 lg:grid-cols-12 lg:grid-rows-2">
-          {/* Featured */}
-          <article
-            className="group relative overflow-hidden border border-zinc-800 transition-colors duration-300 hover:border-orange-500 lg:col-span-7 lg:row-span-2"
-            data-reveal="up"
-          >
-            <img
-              src={featured.img}
-              alt={featured.title}
-              className="absolute inset-0 h-full w-full object-cover contrast-[1.08] transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-zinc-950/10" />
+        {/* 3 Tall Vertical Rounded Image Cards */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {solutions.map((item) => (
+            <div
+              key={item.id}
+              className="group relative h-[480px] sm:h-[540px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-between p-7 text-white"
+            >
+              {/* Photo Background with Zoom effect */}
+              <img
+                src={item.img}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.78]"
+              />
 
-            <div className="relative flex h-full min-h-[460px] flex-col justify-between p-6 sm:min-h-[520px] sm:p-8">
-              <div className="flex items-start justify-between gap-4">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-zinc-950 bg-orange-500 font-heading text-lg font-black text-black shadow-xl transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
-                  {featured.num}
+              {/* Gradient Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-950/20" />
+
+              {/* Top Tag */}
+              <div className="relative z-10 flex justify-between items-start">
+                <span className="bg-white/20 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/20">
+                  {item.tag}
                 </span>
-                <span className="border border-orange-500/40 bg-zinc-950/70 px-3 py-1.5 font-mono text-[10px] font-bold text-orange-400 backdrop-blur-md">
-                  BEST SELLER
+
+                <span className="bg-sky-500/90 text-white text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full">
+                  {item.specs}
                 </span>
               </div>
 
-              <div>
-                <div className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-orange-400">
-                  {featured.specs}
+              {/* Bottom Content Area */}
+              <div className="relative z-10 space-y-3">
+                <div className="text-sky-300 text-xs font-semibold uppercase tracking-wider">
+                  {item.subtitle}
                 </div>
-                <h3 className="max-w-md font-heading text-3xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-4xl">
-                  {featured.title}
+                <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-white group-hover:text-sky-200 transition-colors">
+                  {item.title}
                 </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-300">
-                  {featured.desc}
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                  {item.desc}
                 </p>
 
-                <div className="mt-6 flex flex-wrap items-center gap-3">
+                <div className="pt-2">
                   <a
-                    href={waLink(featured.title)}
+                    href={`https://wa.me/${WHATSAPP}?text=Hello%20Ahmad%20Rubber%20Traders%2C%20I%20need%20pricing%20for%20${encodeURIComponent(
+                      item.title
+                    )}.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/btn inline-flex items-center gap-2 bg-orange-500 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
+                    className="inline-flex items-center gap-2 bg-white hover:bg-sky-50 text-slate-950 font-bold px-5 py-2.5 rounded-full text-xs transition-colors shadow-md"
                   >
-                    <MessageCircle size={14} className="icon-motion" />
-                    <span>Inquire wholesale rates</span>
-                    <ArrowRight
-                      size={13}
-                      className="transition-transform group-hover/btn:translate-x-1"
-                    />
+                    <MessageCircle size={14} className="text-emerald-600" />
+                    <span>Inquire Pricing</span>
                   </a>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
-                    In stock · Ready to dispatch
-                  </span>
                 </div>
               </div>
             </div>
-          </article>
-
-          {/* Secondary cards */}
-          {rest.map((sol, i) => (
-            <article
-              key={sol.title}
-              className="group grid overflow-hidden border border-zinc-800 bg-zinc-900/70 transition-colors duration-300 hover:border-orange-500 sm:grid-cols-[170px_1fr] lg:col-span-5"
-              data-reveal="up"
-              style={{ '--reveal-delay': `${(i + 1) * 100}ms` }}
-            >
-              <div className="relative h-40 overflow-hidden bg-zinc-800 sm:h-full">
-                <img
-                  src={sol.img}
-                  alt={sol.title}
-                  className="h-full w-full object-cover contrast-[1.08] transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-zinc-900/40" />
-                <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-orange-500 font-heading text-xs font-black text-black">
-                  {sol.num}
-                </span>
-              </div>
-
-              <div className="flex flex-col justify-between gap-4 p-5">
-                <div>
-                  <div className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-orange-400">
-                    {sol.specs}
-                  </div>
-                  <h3 className="mt-1.5 font-heading text-xl font-black uppercase leading-tight tracking-wide text-white transition-colors group-hover:text-orange-400">
-                    {sol.title}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-400">{sol.desc}</p>
-                </div>
-
-                <a
-                  href={waLink(sol.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:text-orange-400"
-                >
-                  <MessageCircle size={13} className="text-emerald-500" />
-                  <span>Inquire rates</span>
-                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
-            </article>
           ))}
         </div>
       </div>

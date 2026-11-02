@@ -1,70 +1,46 @@
-import { Phone, MapPin, Star, MessageCircle, Mail } from 'lucide-react';
+import { Phone, MapPin, Star, MessageCircle } from 'lucide-react';
 
 const WHATSAPP = '923116103661';
 
 export default function TopInfoBar() {
   return (
-    <div className="hidden border-b border-zinc-800 bg-zinc-950 text-zinc-300 md:block">
-      <div className="shell flex h-10 items-center justify-between text-[11px] font-medium tracking-wide">
-        {/* Left Info Links */}
-        <div className="flex items-center gap-6">
+    <div className="bg-slate-900 text-slate-300 py-2.5 px-6 sm:px-10 lg:px-16 text-xs font-medium">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-5">
           <a
             href="tel:+923116103661"
-            className="group flex items-center gap-2 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 hover:text-white transition-colors"
           >
-            <Phone size={12} className="text-orange-500" />
-            <span className="text-zinc-500">Direct line</span>
-            <span className="font-mono font-bold tracking-wider text-white group-hover:text-orange-400">
-              +92 311 6103661
-            </span>
+            <Phone size={13} className="text-sky-400" />
+            <span className="font-semibold text-white">+92 311 6103661</span>
           </a>
-
-          <span className="hidden h-3.5 w-px bg-zinc-800 lg:block" />
-
-          <span className="hidden items-center gap-2 lg:flex">
-            <MapPin size={12} className="text-orange-500" />
-            <span className="text-zinc-500">Lahore facility</span>
-            <span className="text-zinc-200">34 Jamia St, Fleming Rd, Wachowali</span>
+          <span className="hidden md:inline text-slate-600">|</span>
+          <span className="flex items-center gap-1.5 text-slate-300">
+            <MapPin size={13} className="text-sky-400" />
+            34 Jamia St, Fleming Rd, Wachowali, Lahore
           </span>
-
-          <span className="hidden h-3.5 w-px bg-zinc-800 xl:block" />
-
-          <a
-            href="mailto:info@ahmadrubbertraders.pk"
-            className="hidden items-center gap-2 transition-colors hover:text-white xl:flex"
-          >
-            <Mail size={12} className="text-orange-500" />
-            <span className="text-zinc-400">info@ahmadrubbertraders.pk</span>
-          </a>
         </div>
 
-        {/* Right Verified Badges */}
-        <div className="flex items-center gap-5">
-          <a
-            href="https://maps.google.com/?q=Wachowali+Bazaar+Lahore+Pakistan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-zinc-300 transition-colors hover:text-orange-400"
-          >
-            <span className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={10} fill="#f97316" className="text-orange-500" />
-              ))}
-            </span>
-            <span className="font-bold text-white">4.9</span>
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500">
-              77 Google reviews
-            </span>
-          </a>
-
+        <div className="flex items-center gap-4">
           <a
             href={`https://wa.me/${WHATSAPP}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 border border-emerald-500/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400 transition-colors hover:bg-emerald-500/20"
+            className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
           >
-            <MessageCircle size={11} />
-            <span>WhatsApp verified</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            WhatsApp Verified
+          </a>
+          <span className="text-slate-600">|</span>
+          <a
+            href="https://maps.google.com/?q=Wachowali+Bazaar+Lahore+Pakistan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-slate-200 hover:text-white transition-colors"
+          >
+            <Star size={12} fill="#eab308" className="text-yellow-500" />
+            <span className="font-bold text-white">4.9★</span>
+            <span className="text-slate-400">(77 Maps Reviews)</span>
           </a>
         </div>
       </div>
